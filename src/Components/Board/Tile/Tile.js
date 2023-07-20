@@ -3,14 +3,17 @@ import { motion } from "framer-motion";
 import "./Tile.css";
 
 export const Tile = ({ value = "", input = "", locked = false }) => {
+    // used to trigger animation when row is submitted
     const [isFlipped, setIsFlipped] = useState(false);
-    const [className, setClassName] = useState("tile");
-    // length of animation in seconds
+    // used to trigger animation when input changes
+    const [inputChanged, setInputChanged] = useState(false);
+    // length of animations in seconds
     const flipDuration = 0.55;
+    const expandDuration = 0.15;
 
     const flipAnimation = {
         rest: { rotateX: 0 },
-        flipped: {
+        flip: {
             rotateX: [0, 93, 0],
             transition: {
                 duration: flipDuration,
@@ -19,7 +22,17 @@ export const Tile = ({ value = "", input = "", locked = false }) => {
         },
     };
 
-    // used for testing flip effect
+    const expandAnimation = {
+        rest: { scale: 1 },
+        expand: {
+            scale: [1, 1.1, 1],
+            transition: {
+                duration: 0.15,
+                ease: "easeInOut",
+            },
+        },
+    };
+
     useEffect(() => {
         if (isFlipped) {
             const timer = setTimeout(() => {
@@ -29,26 +42,35 @@ export const Tile = ({ value = "", input = "", locked = false }) => {
         }
     }, [isFlipped]);
 
-    function createClassName() {
-        if (locked) {
-            if (input === value) {
-                setClassName("tile tile-locked-correct");
-            }
-            // setClassName("tile tile-locked-misplaced");
-            setClassName("tile tile-locked");
-        } else {
-            setClassName("tile");
+    useEffect(() => {
+        if (input !== "") {
+            setInputChanged(true);
+            setTimeout(() => {
+                setInputChanged(false);
+            }, expandDuration * 1000);
         }
-    }
+    }, [input]);
 
     return (
         <motion.div
             className={input === null ? "tile" : "tile filled"}
             onClick={() => !isFlipped && setIsFlipped(true)}
-            variants={flipAnimation}
-            animate={isFlipped ? "flipped" : "rest"}
+            variants={inputChanged ? expandAnimation : flipAnimation}
+            animate={inputChanged ? "expand" : isFlipped ? "flip" : "rest"}
         >
-            <p>{value}</p>
+            <p>{input}</p>
         </motion.div>
     );
 };
+
+// function createClassName() {
+//     if (locked) {
+//         if (input === value) {
+//             setClassName("tile tile-locked-correct");
+//         }
+//         // setClassName("tile tile-locked-misplaced");
+//         setClassName("tile tile-locked");
+//     } else {
+//         setClassName("tile");
+//     }
+// }

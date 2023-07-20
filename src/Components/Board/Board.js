@@ -21,8 +21,6 @@ export default function Board() {
             )
                 return;
 
-            console.log(event.key);
-
             // prevent backspace from default browser behavior
             if (event.key === "Backspace") {
                 event.preventDefault();
@@ -68,48 +66,17 @@ export default function Board() {
 
     return (
         <div className="board">
-            <div className="board-row">
-                <Tile value={board[0][0]} />
-                <Tile value={board[0][1]} />
-                <Tile value={board[0][2]} />
-                <Tile value={board[0][3]} />
-                <Tile value={board[0][4]} />
-            </div>
-            <div className="board-row">
-                <Tile value={board[1][0]} />
-                <Tile value={board[1][1]} />
-                <Tile value={board[1][2]} />
-                <Tile value={board[1][3]} />
-                <Tile value={board[1][4]} />
-            </div>
-            <div className="board-row">
-                <Tile value={board[2][0]} />
-                <Tile value={board[2][1]} />
-                <Tile value={board[2][2]} />
-                <Tile value={board[2][3]} />
-                <Tile value={board[2][4]} />
-            </div>
-            <div className="board-row">
-                <Tile value={board[3][0]} />
-                <Tile value={board[3][1]} />
-                <Tile value={board[3][2]} />
-                <Tile value={board[3][3]} />
-                <Tile value={board[3][4]} />
-            </div>
-            <div className="board-row">
-                <Tile value={board[4][0]} />
-                <Tile value={board[4][1]} />
-                <Tile value={board[4][2]} />
-                <Tile value={board[4][3]} />
-                <Tile value={board[4][4]} />
-            </div>
-            <div className="board-row">
-                <Tile value={board[5][0]} />
-                <Tile value={board[5][1]} />
-                <Tile value={board[5][2]} />
-                <Tile value={board[5][3]} />
-                <Tile value={board[5][4]} />
-            </div>
+            {board.map((row, rowIndex) => (
+                <div className="board-row" key={rowIndex}>
+                    {row.map((item, index) => (
+                        <Tile
+                            value={word.charAt(index)}
+                            input={item}
+                            key={index}
+                        />
+                    ))}
+                </div>
+            ))}
         </div>
     );
 }
