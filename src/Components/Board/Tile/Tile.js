@@ -7,8 +7,6 @@ export const Tile = ({ word = "", value = "", input = "", locked = false }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     // used to trigger animation when input changes
     const [inputChanged, setInputChanged] = useState(false);
-    // if input is correct
-    const [isCorrect, setIsCorrect] = useState(false);
     // class name for tile
     const [className, setClassName] = useState("tile");
     // length of animations in seconds
@@ -54,7 +52,7 @@ export const Tile = ({ word = "", value = "", input = "", locked = false }) => {
     useEffect(() => {
         createClassName();
         // TODO - this might be wrong
-    }, [locked]);
+    }, [locked, input]);
 
     useEffect(() => {
         if (isFlipped) {

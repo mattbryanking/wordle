@@ -71,7 +71,7 @@ export default function Board() {
     }, [board, currRow]);
 
     useEffect(() => {
-        setWord(generate({ minLength: 5, maxLength: 5 }));
+        setWord(generate({ minLength: 5, maxLength: 5 }).toUpperCase());
     }, []);
 
     return (
