@@ -1,0 +1,23 @@
+.tile {
+    width: 2rem;
+    height: 2rem;
+    background-color: #3a3a3c;
+
+    margin: .09rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: white;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
