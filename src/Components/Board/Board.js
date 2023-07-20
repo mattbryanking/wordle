@@ -10,7 +10,10 @@ export default function Board() {
     );
     // correct hidden word
     const [word, setWord] = useState("");
+    // current row being edited
     const [currRow, setCurrRow] = useState(0);
+    // used to trigger win condition
+    const [correct, setCorrect] = useState(false);
 
     useEffect(() => {
         const handleKeyDown = (event) => {

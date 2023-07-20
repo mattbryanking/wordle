@@ -44,13 +44,15 @@ export const Tile = ({
 
     function createClassName() {
         if (locked) {
-            if (input === value) {
-                setClassName("tile tile-locked-correct");
-            } else if (word.indexOf(input) !== -1) {
-                setClassName("tile tile-locked-misplaced");
-            } else {
-                setClassName("tile tile-locked");
-            }
+            setTimeout(() => {
+                if (input === value) {
+                    setClassName("tile tile-locked-correct");
+                } else if (word.indexOf(input) !== -1) {
+                    setClassName("tile tile-locked-misplaced");
+                } else {
+                    setClassName("tile tile-locked");
+                }
+            }, (delayActual + flipDuration / 2) * 1000);
         } else if (input !== "") {
             setClassName("tile tile-filled");
         } else {
