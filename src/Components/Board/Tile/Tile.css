@@ -1,7 +1,7 @@
 .tile {
     width: 2rem;
     height: 2rem;
-    background-color: #3a3a3c;
+    border: 1px solid #3a3a3c;
 
     margin: .09rem;
 
@@ -20,4 +20,19 @@
     -ms-user-select: none;
     user-select: none;
 
+}
+
+.tile-locked-correct {
+    background-color: #538d4e;
+    border: 1px solid #3a3a3c;
+}
+
+.tile-locked-misplaced {
+    background-color: #d9a34a;
+    border: 1px solid #3a3a3c;
+}
+
+.tile-locked {
+    background-color: #3a3a3c;
+    border: 1px solid #3a3a3c;
 }

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./Tile.css";
 
-export const Tile = ({ value = "", input = "" }) => {
+export const Tile = ({ value = "", input = "", locked = false }) => {
     const [isFlipped, setIsFlipped] = useState(false);
+    const [className, setClassName] = useState("tile");
     // length of animation in seconds
     const flipDuration = 0.7;
 
@@ -18,6 +19,7 @@ export const Tile = ({ value = "", input = "" }) => {
         },
     };
 
+    // used for testing flip effect
     useEffect(() => {
         if (isFlipped) {
             const timer = setTimeout(() => {
@@ -27,10 +29,21 @@ export const Tile = ({ value = "", input = "" }) => {
         }
     }, [isFlipped]);
 
+    function createClassName() {
+        if (locked) {
+            if (input === value) {
+                setClassName("tile tile-locked-correct");
+            }
+            // setClassName("tile tile-locked-misplaced");
+            setClassName("tile tile-locked");
+        } else {
+            setClassName("tile");
+        }
+    }
 
     return (
         <motion.div
-            className="tile"
+            className={input === null ? "tile" : "tile filled"}
             onClick={() => !isFlipped && setIsFlipped(true)}
             variants={flipAnimation}
             animate={isFlipped ? "flipped" : "rest"}
