@@ -1,15 +1,30 @@
 .nav-bar {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 4.05rem;
     border-bottom: 1px solid #3a3a3c;
+}
 
+.nav-bar .nav-bar-hamburger {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    margin-left: 1.3rem;
+}
+
+.nav-bar .nav-bar-hamburger > div {
+    width: 1.2rem;
+    height: 0.2rem;
+    background-color: white;
+    margin: 0.12rem 0;
 }
 
 .nav-bar > h1 {
-    font-family: 'Roboto Slab', serif;
+    font-family: "Roboto Slab", serif;
     font-weight: 900;
     font-size: 2.2rem;
     color: white;
@@ -21,5 +36,41 @@
 
 .nav-bar > h1 > span {
     /* adjustements to make roboto slab look like nyt karnak condensed */
-    letter-spacing: -.1rem;
+    letter-spacing: -0.1rem;
+}
+
+.nav-bar .nav-bar-right {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    right: 0;
+    margin-right: 1.3rem;
+}
+
+.nav-bar .nav-bar-right .nav-bar-help {
+    color: white;
+    margin-right: .9rem;
+}
+
+.nav-bar .nav-bar-right .nav-bar-stats {
+    color: white;
+    margin-right: .9rem;
+}
+
+.nav-bar .nav-bar-right .nav-bar-settings {
+    color: white;
+    margin-right: 2.3rem;
+}
+
+.nav-bar .nav-bar-right .nav-bar-subscribe {
+    color: white;
+    background-color: #121213;
+    font-size: .8rem;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 500;
+
+    padding: .55rem 1.5rem;
+    border: 1px solid white;
+    border-radius: 2rem;
 }

@@ -31,12 +31,12 @@
 
 .tile-locked-correct {
     background-color: #538d4e;
-    border: 2px solid #3a3a3c;
+    border: 2px solid #538d4e;
 }
 
 .tile-locked-misplaced {
     background-color: #b59f3b;
-    border: 2px solid #3a3a3c;
+    border: 2px solid #b59f3b;
 }
 
 .tile-locked {
