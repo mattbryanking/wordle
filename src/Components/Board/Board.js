@@ -14,7 +14,7 @@ export default function Board() {
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (
-                event.key.length !== 1 ||
+                (event.key.length !== 1 && event.key !== "Backspace") ||
                 event.ctrlKey ||
                 event.altKey ||
                 event.metaKey
@@ -23,7 +23,10 @@ export default function Board() {
 
             console.log(event.key);
 
-            if (event.key === "Backspace") event.preventDefault();
+            if (event.key === "Backspace") {
+                event.preventDefault();
+                event.stopPropagation();
+            }
 
             const newLetters = [...board[currRow]];
 
