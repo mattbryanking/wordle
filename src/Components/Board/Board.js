@@ -1,61 +1,104 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tile } from "./Tile/Tile";
 import "./Board.css";
 
 export default function Board() {
-    const [firstRow, setFirstRow] = useState(["H", "E", "L", "L", "O"]);
-    const [secondRow, setSecondRow] = useState([null, null, null, null, null]);
-    const [thirdRow, setThirdRow] = useState([null, null, null, null, null]);
-    const [fourthRow, setFourthRow] = useState([null, null, null, null, null]);
-    const [fifthRow, setFifthRow] = useState([null, null, null, null, null]);
-    const [sixthRow, setSixthRow] = useState([null, null, null, null, null]);
+    // 2D array, 6 rows, 5 letters each
+    const [board, setBoard] = useState(
+        Array.from({ length: 6 }, () => new Array(5).fill(""))
+    );
+    // correct hidden word
+    const [word, setWord] = useState("Hello");
+    const [currRow, setCurrRow] = useState(0);
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (
+                event.key.length !== 1 ||
+                event.ctrlKey ||
+                event.altKey ||
+                event.metaKey
+            )
+                return;
+
+            console.log(event.key);
+
+            if (event.key === "Backspace") event.preventDefault();
+
+            const newLetters = [...board[currRow]];
+
+            if (event.key === "Backspace") {
+                for (let i = newLetters.length - 1; i >= 0; --i) {
+                    if (newLetters[i] !== "") {
+                        newLetters[i] = "";
+                        break;
+                    }
+                }
+            } else {
+                for (let i = 0; i < newLetters.length; ++i) {
+                    if (newLetters[i] === "") {
+                        newLetters[i] = event.key.toUpperCase();
+                        break;
+                    }
+                }
+            }
+
+            setBoard((prevBoard) => {
+                const newBoard = [...prevBoard];
+                newBoard[currRow] = newLetters;
+                return newBoard;
+            });
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [board, currRow]);
 
     return (
         <div className="board">
-        <div className="board-row">
-            <Tile value={firstRow[0]} />
-            <Tile value={firstRow[1]} />
-            <Tile value={firstRow[2]} />
-            <Tile value={firstRow[3]} />
-            <Tile value={firstRow[4]} />
+            <div className="board-row">
+                <Tile value={board[0][0]} />
+                <Tile value={board[0][1]} />
+                <Tile value={board[0][2]} />
+                <Tile value={board[0][3]} />
+                <Tile value={board[0][4]} />
+            </div>
+            <div className="board-row">
+                <Tile value={board[1][0]} />
+                <Tile value={board[1][1]} />
+                <Tile value={board[1][2]} />
+                <Tile value={board[1][3]} />
+                <Tile value={board[1][4]} />
+            </div>
+            <div className="board-row">
+                <Tile value={board[2][0]} />
+                <Tile value={board[2][1]} />
+                <Tile value={board[2][2]} />
+                <Tile value={board[2][3]} />
+                <Tile value={board[2][4]} />
+            </div>
+            <div className="board-row">
+                <Tile value={board[3][0]} />
+                <Tile value={board[3][1]} />
+                <Tile value={board[3][2]} />
+                <Tile value={board[3][3]} />
+                <Tile value={board[3][4]} />
+            </div>
+            <div className="board-row">
+                <Tile value={board[4][0]} />
+                <Tile value={board[4][1]} />
+                <Tile value={board[4][2]} />
+                <Tile value={board[4][3]} />
+                <Tile value={board[4][4]} />
+            </div>
+            <div className="board-row">
+                <Tile value={board[5][0]} />
+                <Tile value={board[5][1]} />
+                <Tile value={board[5][2]} />
+                <Tile value={board[5][3]} />
+                <Tile value={board[5][4]} />
+            </div>
         </div>
-        <div className="board-row">
-            <Tile value={secondRow[0]} />
-            <Tile value={secondRow[1]} />
-            <Tile value={secondRow[2]} />
-            <Tile value={secondRow[3]} />
-            <Tile value={secondRow[4]} />
-        </div>
-        <div className="board-row">
-            <Tile value={thirdRow[0]} />
-            <Tile value={thirdRow[1]} />
-            <Tile value={thirdRow[2]} />
-            <Tile value={thirdRow[3]} />
-            <Tile value={thirdRow[4]} />
-        </div>
-        <div className="board-row">
-            <Tile value={fourthRow[0]} />
-            <Tile value={fourthRow[1]} />
-            <Tile value={fourthRow[2]} />
-            <Tile value={fourthRow[3]} />
-            <Tile value={fourthRow[4]} />
-        </div>
-        <div className="board-row">
-            <Tile value={fifthRow[0]} />
-            <Tile value={fifthRow[1]} />
-            <Tile value={fifthRow[2]} />
-            <Tile value={fifthRow[3]} />
-            <Tile value={fifthRow[4]} />
-        </div>
-        <div className="board-row">
-            <Tile value={sixthRow[0]} />
-            <Tile value={sixthRow[1]} />
-            <Tile value={sixthRow[2]} />
-            <Tile value={sixthRow[3]} />
-            <Tile value={sixthRow[4]} />
-        </div>
-    </div>
-    
     );
 }
