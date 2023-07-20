@@ -6,7 +6,7 @@ export const Tile = ({ value = "", input = "", locked = false }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [className, setClassName] = useState("tile");
     // length of animation in seconds
-    const flipDuration = 0.7;
+    const flipDuration = 0.55;
 
     const flipAnimation = {
         rest: { rotateX: 0 },

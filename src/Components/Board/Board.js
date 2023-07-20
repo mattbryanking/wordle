@@ -14,10 +14,8 @@ export default function Board() {
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (
-                (event.key.length !== 1 && event.key !== "Backspace") ||
-                event.ctrlKey ||
-                event.altKey ||
-                event.metaKey
+                (event.key.length !== 1 || !event.key.match(/^[A-Za-z]$/)) &&
+                event.key !== "Backspace"
             )
                 return;
 
