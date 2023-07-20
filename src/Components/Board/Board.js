@@ -84,6 +84,7 @@ export default function Board() {
                             value={word.charAt(index)}
                             input={item}
                             locked={rowIndex < currRow}
+                            delay={index}
                             key={index}
                         />
                     ))}

@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./Tile.css";
 
-export const Tile = ({ word = "", value = "", input = "", locked = false }) => {
+export const Tile = ({
+    word = "",
+    value = "",
+    input = "",
+    locked = false,
+    delay = 0,
+}) => {
     // used to trigger animation when row is submitted
     const [isFlipped, setIsFlipped] = useState(false);
     // used to trigger animation when input changes
@@ -11,7 +17,8 @@ export const Tile = ({ word = "", value = "", input = "", locked = false }) => {
     const [className, setClassName] = useState("tile");
     // length of animations in seconds
     const flipDuration = 0.55;
-    const expandDuration = 0.15;
+    const expandDuration = 0.5;
+    const delayActual = delay * 0.1;
 
     const flipAnimation = {
         rest: { rotateX: 0 },
@@ -44,6 +51,8 @@ export const Tile = ({ word = "", value = "", input = "", locked = false }) => {
             } else {
                 setClassName("tile tile-locked");
             }
+        } else if (input !== "") {
+            setClassName("tile tile-filled");
         } else {
             setClassName("tile");
         }
@@ -51,7 +60,11 @@ export const Tile = ({ word = "", value = "", input = "", locked = false }) => {
 
     useEffect(() => {
         createClassName();
-        // TODO - this might be wrong
+        if (locked) {
+            setTimeout(() => {
+                setIsFlipped(true);
+            }, delayActual * 1000);
+        }
     }, [locked, input]);
 
     useEffect(() => {
@@ -75,7 +88,6 @@ export const Tile = ({ word = "", value = "", input = "", locked = false }) => {
     return (
         <motion.div
             className={className}
-            onClick={() => !isFlipped && setIsFlipped(true)}
             variants={inputChanged ? expandAnimation : flipAnimation}
             animate={inputChanged ? "expand" : isFlipped ? "flip" : "rest"}
         >
