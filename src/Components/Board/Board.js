@@ -80,9 +80,10 @@ export default function Board() {
                 <div className="board-row" key={rowIndex}>
                     {row.map((item, index) => (
                         <Tile
-                            locked={rowIndex !== currRow}
+                            word={word}
                             value={word.charAt(index)}
                             input={item}
+                            locked={rowIndex < currRow}
                             key={index}
                         />
                     ))}
