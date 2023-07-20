@@ -48,7 +48,7 @@ export const Tile = ({ value = "", input = "", locked = false }) => {
             variants={flipAnimation}
             animate={isFlipped ? "flipped" : "rest"}
         >
-            {value}
+            <p>{value}</p>
         </motion.div>
     );
 };

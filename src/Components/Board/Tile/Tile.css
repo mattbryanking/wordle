@@ -1,25 +1,28 @@
 .tile {
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid #3a3a3c;
+    width: 3.6rem;
+    height: 3.6rem;
+    border: 2px solid #3a3a3c;
 
-    margin: .09rem;
+    margin: .18rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
-
-    font-size: 1rem;
-    font-weight: 700;
-    font-family: 'IBM Plex Sans', sans-serif;
-    color: white;
 
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
 
+.tile > p {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: white;
+
+    transform: translateY(-3px);
 }
 
 .tile-locked-correct {
