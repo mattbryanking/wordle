@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { generate } from "random-words";
 import { Tile } from "./Tile/Tile";
 import "./Board.css";
 
@@ -8,7 +9,7 @@ export default function Board() {
         Array.from({ length: 6 }, () => new Array(5).fill(""))
     );
     // correct hidden word
-    const [word, setWord] = useState("Hello");
+    const [word, setWord] = useState("");
     const [currRow, setCurrRow] = useState(0);
 
     useEffect(() => {
@@ -36,14 +37,18 @@ export default function Board() {
                 } else {
                     return;
                 }
-            } else if (event.key === "Backspace") {
+            }
+            // deletes last letter on backspace
+            else if (event.key === "Backspace") {
                 for (let i = newLetters.length - 1; i >= 0; --i) {
                     if (newLetters[i] !== "") {
                         newLetters[i] = "";
                         break;
                     }
                 }
-            } else {
+            }
+            // adds letter to first empty space
+            else {
                 for (let i = 0; i < newLetters.length; ++i) {
                     if (newLetters[i] === "") {
                         newLetters[i] = event.key.toUpperCase();
@@ -52,6 +57,7 @@ export default function Board() {
                 }
             }
 
+            // updates board
             setBoard((prevBoard) => {
                 const newBoard = [...prevBoard];
                 newBoard[currRow] = newLetters;
@@ -64,12 +70,17 @@ export default function Board() {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [board, currRow]);
 
+    useEffect(() => {
+        setWord(generate({ minLength: 5, maxLength: 5 }));
+    }, []);
+
     return (
         <div className="board">
             {board.map((row, rowIndex) => (
                 <div className="board-row" key={rowIndex}>
                     {row.map((item, index) => (
                         <Tile
+                            locked={rowIndex !== currRow}
                             value={word.charAt(index)}
                             input={item}
                             key={index}
@@ -77,6 +88,7 @@ export default function Board() {
                     ))}
                 </div>
             ))}
+            <h1>{word}</h1>
         </div>
     );
 }

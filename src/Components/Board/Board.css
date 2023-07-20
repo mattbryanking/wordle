@@ -7,3 +7,7 @@
     display: flex;
     flex-direction: row;
 }
+
+.board > h1 {
+    color: white;
+}
