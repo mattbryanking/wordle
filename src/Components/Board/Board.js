@@ -13,14 +13,17 @@ export default function Board() {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
+            // allow only letters, backspace, and enter
             if (
                 (event.key.length !== 1 || !event.key.match(/^[A-Za-z]$/)) &&
-                event.key !== "Backspace"
+                event.key !== "Backspace" &&
+                event.key !== "Enter"
             )
                 return;
 
             console.log(event.key);
 
+            // prevent backspace from default browser behavior
             if (event.key === "Backspace") {
                 event.preventDefault();
                 event.stopPropagation();
@@ -28,7 +31,14 @@ export default function Board() {
 
             const newLetters = [...board[currRow]];
 
-            if (event.key === "Backspace") {
+            // goes to next row on enter
+            if (event.key === "Enter") {
+                if (newLetters.every((letter) => letter !== "")) {
+                    setCurrRow((prevRow) => prevRow + 1);
+                } else {
+                    return;
+                }
+            } else if (event.key === "Backspace") {
                 for (let i = newLetters.length - 1; i >= 0; --i) {
                     if (newLetters[i] !== "") {
                         newLetters[i] = "";
