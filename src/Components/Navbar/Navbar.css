@@ -71,13 +71,13 @@
     color: white;
 }
 
-.nav-bar .nav-bar-right .nav-bar-stats {
+.nav-bar .nav-bar-right .nav-bar-github {
     color: black;
     margin-right: 0.9rem;
     cursor: pointer;
 }
 
-.nav-bar .nav-bar-right .nav-bar-stats-dark {
+.nav-bar .nav-bar-right .nav-bar-github-dark {
     color: white;
 }
 

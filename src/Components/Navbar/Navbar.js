@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../ThemeProvider";
 import { ReactComponent as Help } from "./Assets/help.svg";
-import { ReactComponent as Stats } from "./Assets/stats.svg";
+import { ReactComponent as Github } from "./Assets/github.svg";
 import { ReactComponent as Settings } from "./Assets/settings.svg";
 import "./Navbar.css";
 
@@ -33,14 +33,19 @@ export default function Navbar() {
                             : "nav-bar-help"
                     }
                 />
-                <Stats
-                    onClick={() => setDarkMode(!darkMode)}
-                    className={
-                        darkMode
-                            ? "nav-bar-stats nav-bar-stats-dark"
-                            : "nav-bar-stats"
-                    }
-                />
+                <a
+                    href="https://github.com/mattbryanking"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <Github
+                        className={
+                            darkMode
+                                ? "nav-bar-github nav-bar-github-dark"
+                                : "nav-bar-github"
+                        }
+                    />
+                </a>
                 <Settings
                     className={
                         darkMode
@@ -54,7 +59,7 @@ export default function Navbar() {
                             ? "nav-bar-subscribe nav-bar-subscribe-dark"
                             : "nav-bar-subscribe"
                     }
-                    href="https://github.com/mattbryanking"
+                    href="https://www.nytimes.com/games/wordle/index.html"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

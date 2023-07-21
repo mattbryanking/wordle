@@ -29,16 +29,13 @@ export default function Board() {
             )
                 return;
 
-            // prevent backspace from default browser behavior
-            if (event.key === "Backspace") {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-
             const newLetters = [...board[currRow]];
 
             // goes to next row on enter
             if (event.key === "Enter") {
+                event.preventDefault();
+                event.stopPropagation();
+
                 if (newLetters.every((letter) => letter !== "")) {
                     if (newLetters.join("").toLowerCase() === word) {
                         setCorrect(true);
@@ -56,6 +53,9 @@ export default function Board() {
             }
             // deletes last letter on backspace
             else if (event.key === "Backspace") {
+                event.preventDefault();
+                event.stopPropagation();
+
                 for (let i = newLetters.length - 1; i >= 0; --i) {
                     if (newLetters[i] !== "") {
                         newLetters[i] = "";
