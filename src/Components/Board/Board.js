@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { generate } from "random-words";
 import { Tile } from "./Tile/Tile";
 import "./Board.css";
@@ -17,6 +18,7 @@ export default function Board() {
     // list of all 5 letter words
     const [wordList, setWordList] = useState([]);
 
+    // handles key presses
     useEffect(() => {
         const handleKeyDown = (event) => {
             // allow only letters, backspace, and enter
@@ -84,6 +86,7 @@ export default function Board() {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [board, currRow]);
 
+    // creates hidden word and list of all 5 letter words
     useEffect(() => {
         setWord(generate({ minLength: 5, maxLength: 5 }).toUpperCase());
 
@@ -95,7 +98,7 @@ export default function Board() {
     return (
         <div className="board">
             {board.map((row, rowIndex) => (
-                <div className="board-row" key={rowIndex}>
+                <motion.div className="board-row" key={rowIndex}>
                     {row.map((item, index) => (
                         <Tile
                             word={word}
@@ -107,9 +110,9 @@ export default function Board() {
                             key={index}
                         />
                     ))}
-                </div>
+                </motion.div>
             ))}
-            <h1>{word}</h1>
+            {/* <h1>{word}</h1> */}
         </div>
     );
 }

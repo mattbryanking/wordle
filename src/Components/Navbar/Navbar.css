@@ -5,6 +5,10 @@
     align-items: center;
     width: 100vw;
     height: 4.05rem;
+    border-bottom: 1px solid #d3d6da;
+}
+
+.nav-bar-dark {
     border-bottom: 1px solid #3a3a3c;
 }
 
@@ -20,20 +24,28 @@
 .nav-bar .nav-bar-hamburger > div {
     width: 1.2rem;
     height: 0.2rem;
-    background-color: white;
+    background-color: black;
     margin: 0.12rem 0;
+}
+
+.nav-bar .nav-bar-hamburger-dark > div {
+    background-color: white;
 }
 
 .nav-bar > h1 {
     font-family: "Roboto Slab", serif;
     font-weight: 900;
     font-size: 2.2rem;
-    color: white;
+    color: black;
     cursor: default;
 
     /* adjustements to make roboto slab look like nyt karnak condensed */
     transform: scaleX(0.85) translateY(-1px);
     /* text-shadow: 1px 1px 1px white; */
+}
+
+.nav-bar-dark > h1 {
+    color: white;
 }
 
 .nav-bar > h1 > span {
@@ -51,26 +63,37 @@
 }
 
 .nav-bar .nav-bar-right .nav-bar-help {
-    color: white;
+    color: black;
     margin-right: 0.9rem;
     cursor: pointer;
+}
+.nav-bar .nav-bar-right .nav-bar-help-dark {
+    color: white;
 }
 
 .nav-bar .nav-bar-right .nav-bar-stats {
-    color: white;
+    color: black;
     margin-right: 0.9rem;
     cursor: pointer;
 }
 
-.nav-bar .nav-bar-right .nav-bar-settings {
+.nav-bar .nav-bar-right .nav-bar-stats-dark {
     color: white;
+}
+
+.nav-bar .nav-bar-right .nav-bar-settings {
+    color: black;
     margin-right: 2.3rem;
     cursor: pointer;
 }
 
-.nav-bar .nav-bar-right .nav-bar-subscribe {
+.nav-bar .nav-bar-right .nav-bar-settings-dark {
     color: white;
-    background-color: #121213;
+}
+
+.nav-bar .nav-bar-right .nav-bar-subscribe {
+    color: black;
+    background-color: white;
 
     font-size: 0.8rem;
     font-family: "Libre Franklin", sans-serif;
@@ -79,6 +102,26 @@
 
     padding: 0.55rem 1.5rem;
 
-    border: 1px solid white;
+    border: 1px solid black;
     border-radius: 2rem;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.nav-bar .nav-bar-right .nav-bar-subscribe-dark {
+    color: white;
+    background-color: #121213;
+    border: 1px solid white;
+}
+
+@media screen and (max-width: 850px) {
+    .nav-bar > h1 {
+        position: absolute;
+        left: 0;
+        margin-left: 3.5rem;
+    }
 }

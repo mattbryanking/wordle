@@ -1,9 +1,9 @@
 .tile {
     width: 3.6rem;
     height: 3.6rem;
-    border: 2px solid #3a3a3c;
+    border: 2px solid #d3d6da;
 
-    margin: .18rem;
+    margin: 0.18rem;
 
     display: flex;
     justify-content: center;
@@ -16,10 +16,14 @@
     user-select: none;
 }
 
+.tile-dark {
+    border: 2px solid #3a3a3c;
+}
+
 .tile > p {
     font-size: 2rem;
     font-weight: 700;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
     color: white;
 
     transform: translateY(-3px);
@@ -29,17 +33,36 @@
     border: 2px solid #565758;
 }
 
+.tile-filled > p {
+    color: black;
+}
+
 .tile-locked-correct {
+    background-color: #6aaa64;
+    border: 2px solid #6aaa64
+}
+
+.tile-locked-correct-dark {
     background-color: #538d4e;
     border: 2px solid #538d4e;
 }
 
 .tile-locked-misplaced {
+    background-color: #c9b458;
+    border: 2px solid #c9b458;
+}
+
+.tile-locked-misplaced-dark {
     background-color: #b59f3b;
     border: 2px solid #b59f3b;
 }
 
 .tile-locked {
+    background-color: #787c7e;
+    border: 2px solid #787c7e;
+}
+
+.tile-locked-dark {
     background-color: #3a3a3c;
     border: 2px solid #3a3a3c;
 }

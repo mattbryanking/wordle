@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../ThemeProvider";
 import { ReactComponent as Backspace } from "./Assets/backspace.svg";
 import Key from "./Key/Key";
 import "./Keyboard.css";
 
 export default function Keyboard() {
+    // page theme
+    const { darkMode } = useContext(ThemeContext);
+
     return (
         <div className="keyboard">
             <div className="row">
