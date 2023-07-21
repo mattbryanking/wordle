@@ -19,9 +19,14 @@ export default function Navbar() {
                 <Help className="nav-bar-help" />
                 <Stats className="nav-bar-stats" />
                 <Settings className="nav-bar-settings" />
-                <button className="nav-bar-subscribe">
+                <a
+                    className="nav-bar-subscribe"
+                    href="https://github.com/mattbryanking"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     Subscribe to Games
-                </button>
+                </a>
             </div>
         </div>
     );

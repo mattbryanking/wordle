@@ -14,6 +14,7 @@
     flex-direction: column;
     left: 0;
     margin-left: 1.3rem;
+    cursor: pointer;
 }
 
 .nav-bar .nav-bar-hamburger > div {
@@ -28,10 +29,11 @@
     font-weight: 900;
     font-size: 2.2rem;
     color: white;
+    cursor: default;
 
     /* adjustements to make roboto slab look like nyt karnak condensed */
     transform: scaleX(0.85) translateY(-1px);
-    text-shadow: 1px 1px 1px white;
+    /* text-shadow: 1px 1px 1px white; */
 }
 
 .nav-bar > h1 > span {
@@ -50,27 +52,33 @@
 
 .nav-bar .nav-bar-right .nav-bar-help {
     color: white;
-    margin-right: .9rem;
+    margin-right: 0.9rem;
+    cursor: pointer;
 }
 
 .nav-bar .nav-bar-right .nav-bar-stats {
     color: white;
-    margin-right: .9rem;
+    margin-right: 0.9rem;
+    cursor: pointer;
 }
 
 .nav-bar .nav-bar-right .nav-bar-settings {
     color: white;
     margin-right: 2.3rem;
+    cursor: pointer;
 }
 
 .nav-bar .nav-bar-right .nav-bar-subscribe {
     color: white;
     background-color: #121213;
-    font-size: .8rem;
-    font-family: 'Libre Franklin', sans-serif;
-    font-weight: 500;
 
-    padding: .55rem 1.5rem;
+    font-size: 0.8rem;
+    font-family: "Libre Franklin", sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+
+    padding: 0.55rem 1.5rem;
+
     border: 1px solid white;
     border-radius: 2rem;
 }
