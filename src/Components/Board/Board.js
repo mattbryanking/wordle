@@ -99,10 +99,11 @@ export default function Board() {
                     {row.map((item, index) => (
                         <Tile
                             word={word}
+                            row={[...board[currRow]].join("")}
                             value={word.charAt(index)}
                             input={item}
                             locked={rowIndex < currRow}
-                            delay={index}
+                            index={index}
                             key={index}
                         />
                     ))}

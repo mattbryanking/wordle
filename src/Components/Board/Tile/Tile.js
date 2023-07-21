@@ -4,10 +4,11 @@ import "./Tile.css";
 
 export const Tile = ({
     word = "",
+    row = "",
     value = "",
     input = "",
     locked = false,
-    delay = 0,
+    index = 0,
 }) => {
     // used to trigger animation when row is submitted
     const [isFlipped, setIsFlipped] = useState(false);
@@ -18,7 +19,7 @@ export const Tile = ({
     // length of animations in seconds
     const flipDuration = 0.55;
     const expandDuration = 0.5;
-    const delayActual = delay * 0.1;
+    const delayActual = index * 0.1;
 
     const flipAnimation = {
         rest: { rotateX: 0 },
@@ -48,7 +49,9 @@ export const Tile = ({
                 if (input === value) {
                     setClassName("tile tile-locked-correct");
                 } else if (word.indexOf(input) !== -1) {
-                    setClassName("tile tile-locked-misplaced");
+                    compareStrings(word, row, index)
+                        ? setClassName("tile tile-locked-misplaced")
+                        : setClassName("tile tile-locked");
                 } else {
                     setClassName("tile tile-locked");
                 }
@@ -58,6 +61,19 @@ export const Tile = ({
         } else {
             setClassName("tile");
         }
+    }
+
+    // used to calculate edge cases where a letter is in the word, but is not in the correct position.
+    // if the same letter is in the right position somewhere else, the current one should be locked
+    // to avoid users looking a second occurance of the letter. however, without this function, the
+    // letter would be marked as misplaced, which is incorrect.
+    function compareStrings(string1, string2, index) {
+        for (let i = 0; i < string1.length; i++) {
+            if (i !== index && string1[i] === string2[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     useEffect(() => {
