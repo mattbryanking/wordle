@@ -14,6 +14,8 @@ export default function Board() {
     const [currRow, setCurrRow] = useState(0);
     // used to trigger win condition
     const [correct, setCorrect] = useState(false);
+    // list of all 5 letter words
+    const [wordList, setWordList] = useState([]);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -36,6 +38,15 @@ export default function Board() {
             // goes to next row on enter
             if (event.key === "Enter") {
                 if (newLetters.every((letter) => letter !== "")) {
+                    if (newLetters.join("").toLowerCase() === word) {
+                        setCorrect(true);
+                        return;
+                    } else if (
+                        !wordList.includes(newLetters.join("").toLowerCase())
+                    ) {
+                        alert("Invalid word!");
+                        return;
+                    }
                     setCurrRow((prevRow) => prevRow + 1);
                 } else {
                     return;
@@ -75,6 +86,10 @@ export default function Board() {
 
     useEffect(() => {
         setWord(generate({ minLength: 5, maxLength: 5 }).toUpperCase());
+
+        const allWords = require("an-array-of-english-words");
+        const fiveLetterWords = allWords.filter((word) => word.length === 5);
+        setWordList(fiveLetterWords);
     }, []);
 
     return (
