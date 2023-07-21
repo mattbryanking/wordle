@@ -1,6 +1,12 @@
 .keyboard {
-    width: 10rem;
-    height: 10rem;
-    background-color: #3a3a3c;
-    margin-bottom: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 14rem;
+}
+
+.keyboard .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
